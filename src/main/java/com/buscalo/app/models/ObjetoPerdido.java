@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class ObjetoPerdido {
 
     @Id
-    private Long id;
+    private String id;
 
     @Indexed
     private String titulo; // Breve descripción o título del objeto
@@ -46,12 +46,19 @@ public class ObjetoPerdido {
         this.recompensa = recompensa;
     }
 
+    public ObjetoPerdido(String titulo, String descripcion, String categoria, LocalDateTime fechaPerdido) {
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.fechaPerdido = fechaPerdido;
+    }
+
     // Getters y Setters
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
