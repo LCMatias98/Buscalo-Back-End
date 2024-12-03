@@ -1,42 +1,36 @@
-package com.buscalo.app.models;
+package com.buscalo.app.dtos;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.DBRef;
+import com.buscalo.app.models.*;
+
 import java.time.LocalDateTime;
 
-@Document(collection = "objetos_encontrados")
-public class ObjetoEncontrado {
+public class ObjetoEncontradoDTO {
 
-    @Id
-    private String id;
-
-    @Indexed
-    private String titulo; // Breve descripción o título del objeto
-
+    private String titulo;
     private String descripcion;
-
-    @DBRef // Relación con la categoría del objeto
     private Categoria categoria;
-
-
-    @Indexed
-    private LocalDateTime fechaEncontrado; // Fecha en que el objeto fue encontrado
-
-    private Ubicacion ubicacion; // Dirección o zona donde se encontró el objeto
-
-    @DBRef // Relación con el usuario que encontró el objeto
+    private LocalDateTime fechaEncontrado;
+    private Ubicacion ubicacion;
     private Usuario usuario;
-
-    private Recompensa recompensa; // Si el usuario ofrece recompensa o no
+    private Recompensa recompensa;
 
     // Constructor vacío
-    public ObjetoEncontrado() {
+    public ObjetoEncontradoDTO() {
+    }
+
+    public ObjetoEncontradoDTO(ObjetoEncontrado objetoEncontrado){
+        this.titulo = objetoEncontrado.getTitulo();
+        this.descripcion = objetoEncontrado.getDescripcion();
+        this.categoria = objetoEncontrado.getCategoria();
+        this.fechaEncontrado = objetoEncontrado.getFechaEncontrado();
+        this.ubicacion = objetoEncontrado.getUbicacion();
+        this.usuario = objetoEncontrado.getUsuario();
+        this.recompensa = objetoEncontrado.getRecompensa();
     }
 
     // Constructor con parámetros
-    public ObjetoEncontrado(String titulo, String descripcion, Categoria categoria, LocalDateTime fechaEncontrado, Ubicacion ubicacion, Usuario usuario, Recompensa recompensa) {
+    public ObjetoEncontradoDTO(String titulo, String descripcion, Categoria categoria, LocalDateTime fechaEncontrado,
+                               Ubicacion ubicacion, Usuario usuario, Recompensa recompensa) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.categoria = categoria;
@@ -47,13 +41,6 @@ public class ObjetoEncontrado {
     }
 
     // Getters y Setters
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getTitulo() {
         return titulo;

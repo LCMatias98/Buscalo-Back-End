@@ -11,7 +11,7 @@ import java.util.List;
 public class Usuario {
 
     @Id
-    private Long id;
+    private String id;
 
     @Indexed(unique = true)
     private String email;
@@ -20,6 +20,8 @@ public class Usuario {
     private String apellido;
     private String password;
     private String telefono;
+    private String token;
+    private String refreshToken;
 
     private Boolean esActivo; // Estado de cuenta
     private Boolean recibirNotificaciones; // Preferencias del usuario sobre notificaciones
@@ -51,11 +53,11 @@ public class Usuario {
 
     // Getters y Setters
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -129,5 +131,21 @@ public class Usuario {
 
     public void setObjetosEncontrados(List<ObjetoEncontrado> objetosEncontrados) {
         this.objetosEncontrados = objetosEncontrados;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getRefreshToken() {
+        return refreshToken;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
     }
 }
